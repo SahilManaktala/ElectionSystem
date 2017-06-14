@@ -11,11 +11,11 @@ class District(models.Model):
     district_name = models.CharField(max_length = 150)
 
 class Tehsil(models.Model):
-    district_id = models.CharField(max_length = 2)
+    district_id = models.CharField(max_length = 4) #CSDD
     tehsil_id = models.CharField(max_length = 2)
     tehsil_name = models.CharField(max_length = 150)
 
 class GramPanchayat(models.Model):
-    tehsil_id = models.CharField(max_length = 2)
+    tehsil_id = models.CharField(max_length = 6) #CSDDTT
     gram_panchayat_id = models.CharField(max_length = 2)
     gram_panchayat_name = models.CharField(max_length = 150)
