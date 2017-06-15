@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+<div class="container-fluid">
+    <h1><center>Registration Form</center></h1>
+</div>
+<div class="container">
+<form>
+  <div class="form-group">
+    <label for="fname">First Name</label>
+        <input  name="fname" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter first name" required>
+  </div>
+  <div class="form-group">
+      <label for="lname">Last Name</label>
+        <input name="lname" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter last name" required>
+  </div>
+    <legend>Gender</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="Male" checked>
+        Male
+      </label>
+    </div>
+    <div class="form-check">
+    <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="Female">
+        Female
+      </label>
+    </div>
+<br>
+  <div class="form-group">
+    <label for="faname">Father's Name</label>
+        <input  name="faname" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Father's name" required>
+  </div>
+  <div class="form-group">
+    <label for="fname">Mother's Name</label>
+        <input  name="moname" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Mother's name" required>
+  </div>
+  <div class="form-group">
+    <label for="cnumber">Phone Number</label>
+        <input  name="cnumber" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone Number" required>
+  </div>
+   <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+   </div>
+   <div class="form-group">
+    <label for="Pan">PAN Number</label>
+        <input  name="Pan" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter PAN Number" required>
+  </div>
+   <div class="form-group">
+    <label for="Country">Country</label>
+        <input  name="Country" type="text" class="form-control" value="India" id="exampleInputEmail1" readonly>
+  </div>
+   <br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</body>
+</html>
