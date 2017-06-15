@@ -6,16 +6,62 @@
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    myObj = JSON.parse(this.responseText);
+                    var myObj = JSON.parse(this.responseText);
                     document.getElementById('district').disabled = false;
+                    document.getElementById('tehsil').disabled = true;
+                    document.getElementById('gram_panchayat').disabled = true;
                     html = ''
                     for (i = 0; i < myObj.length; i++) {
-                        html = html + '<option value=\"' + myObj[i].district_id + '\">' + myObj[i].district_name + '</option>';
+                        var html = html + '<option value=\"' + myObj[i].district_id + '\">' + myObj[i].district_name + '</option>';
                     }
                     document.getElementById('district').innerHTML = html;
                 }
             };
             xmlhttp.open("GET", "/smart_card/get_districts/?state_id=" + value, true);
+            xmlhttp.send();
+        }
+
+        function getTehsils() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var myObj = JSON.parse(this.responseText);
+                    document.getElementById('tehsil').disabled = false;
+                    document.getElementById('gram_panchayat').disabled = true;
+                    var html = ''
+                    for (i = 0; i < myObj.length; i++) {
+                        html = html + '<option value=\"' + myObj[i].tehsil_id + '\">' + myObj[i].tehsil_name + '</option>';
+                    }
+                    document.getElementById('tehsil').innerHTML = html;
+                }
+            };
+            var url = "/smart_card/get_tehsils/";
+            url += "?country_id=1&";
+            url += "state_id=" + document.getElementById("state").value + "&";
+            url += "district_id=" + document.getElementById("district").value;
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+        }
+
+        function getGramPanchayats() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var myObj = JSON.parse(this.responseText);
+                    document.getElementById('gram_panchayat').disabled = false;
+                    var html = ''
+                    for (i = 0; i < myObj.length; i++) {
+                        html = html + '<option value=\"' + myObj[i].gram_panchayat_id + '\">' + myObj[i].gram_panchayat_name + '</option>';
+                    }
+                    document.getElementById('gram_panchayat').innerHTML = html;
+                }
+            };
+            var url = "/smart_card/get_gram_panchayats/";
+            url += "?country_id=1&";
+            url += "state_id=" + document.getElementById("state").value + "&";
+            url += "district_id=" + document.getElementById("district").value + "&";
+            url += "tehsil_id=" + document.getElementById("tehsil").value;
+            xmlhttp.open("GET", url, true);
             xmlhttp.send();
         }
     </script>
@@ -75,8 +121,8 @@
         <input  name="Country" type="text" class="form-control" value="India" id="exampleInputEmail1" readonly>
   </div>
     <div class="form-group">
-      <label for="sel1">State :</label>
-      <select class="form-control" id="sel1" name="state" onchange="getDistricts(this.value)">
+      <label for="state">State :</label>
+      <select class="form-control" id="state" name="state" onchange="getDistricts(this.value)">
 
           {% for foo in sta %}
 
@@ -88,25 +134,17 @@
     </div>
     <div class="form-group">
       <label for="district">District :</label>
-      <select class="form-control" id="district" disabled>
+      <select class="form-control" id="district" onchange="getTehsils()" disabled>
       </select>
     </div>
     <div class="form-group">
-      <label for="sel1">Tehsil :</label>
-      <select class="form-control" id="sel1">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
+      <label for="tehsil">Tehsil :</label>
+      <select class="form-control" id="tehsil" onchange="getGramPanchayats()" disabled>
       </select>
     </div>
     <div class="form-group">
-      <label for="sel1">Gram Panchayat / Ward :</label>
-      <select class="form-control" id="sel1">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
+      <label for="gram_panchayat">Gram Panchayat / Ward :</label>
+      <select class="form-control" id="gram_panchayat" disabled>
       </select>
     </div>
 
