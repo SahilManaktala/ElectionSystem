@@ -35,6 +35,7 @@ class GramPanchayat(models.Model):
 class Person(models.Model):
     gram_panchayat_id = models.CharField(max_length = 8)
     person_id = models.CharField(max_length = 5)
+    password = models.CharField(max_length = 15)
     first_name = models.CharField(max_length = 20)
     last_name = models.CharField(max_length = 20)
     fathers_name = models.CharField(max_length = 50)
