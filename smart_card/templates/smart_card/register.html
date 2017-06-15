@@ -11,7 +11,7 @@
 </div>
 <hr>
 <div class="container" style="box-shadow: 10px 10px 5px grey;">
-<form>
+<form action="{% url 'register' %}" method="GET">
   <div class="form-group">
     <label for="fname">First Name</label>
         <input  name="fname" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter first name" required>
@@ -62,12 +62,12 @@
       <label for="sel1">State :</label>
       <select class="form-control" id="sel1">
 
-          {% for i in states %}
-              <option>{{ i.state_name }}</option>
-{#        <option>2</option>#}
-{#        <option>3</option>#}
-{#        <option>4</option>#}
+          {% for foo in states %}
+
+          <option> {{ foo.state_name }} </option>
           {% endfor %}
+
+
       </select>
     </div>
     <div class="form-group">
