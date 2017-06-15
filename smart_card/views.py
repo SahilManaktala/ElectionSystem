@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import District, Tehsil, GramPanchayat
+from .models import *
 
 def index(request):
     return render(request, 'smart_card/index.html', context=None)
 
 def register(request):
+    states = State.objects.all()
     return render(request, 'smart_card/register.html', context=None)
 
 def get_districts(request):
