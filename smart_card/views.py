@@ -3,7 +3,6 @@ from django.http import JsonResponse
 from .models import *
 
 def index(request):
-
     return render(request, 'smart_card/index.html', context=None)
 
 def register(request):
@@ -12,6 +11,11 @@ def register(request):
     }
 
     return render(request, 'smart_card/register.html', context)
+
+def details(request):
+    return render(request, 'smart_card/details.html', context=None)
+
+
 
 def get_districts(request):
     state_id = request.GET.get('state_id', None)
