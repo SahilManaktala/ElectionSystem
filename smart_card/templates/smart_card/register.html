@@ -1,5 +1,27 @@
-
+<html>
+<head>
+    <title>Registration</title>
+    <script type="text/javascript">
+        function getDistricts(value) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    myObj = JSON.parse(this.responseText);
+                    document.getElementById('district').disabled = false;
+                    html = ''
+                    for (i = 0; i < myObj.length; i++) {
+                        html = html + '<option value=\"' + myObj[i].district_id + '\">' + myObj[i].district_name + '</option>';
+                    }
+                    document.getElementById('district').innerHTML = html;
+                }
+            };
+            xmlhttp.open("GET", "/smart_card/get_districts/?state_id=" + value, true);
+            xmlhttp.send();
+        }
+    </script>
+</head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<body>
 <div class="container-fluid">
     <h1><center>Registration Form</center></h1>
 </div>
@@ -54,23 +76,19 @@
   </div>
     <div class="form-group">
       <label for="sel1">State :</label>
-      <select class="form-control" id="sel1">
+      <select class="form-control" id="sel1" name="state" onchange="getDistricts(this.value)">
 
           {% for foo in sta %}
 
-                 <option> {{ foo.state_name }} </option>
+                 <option value="{{ foo.state_id }}"> {{ foo.state_name }} </option>
           {% endfor %}
 
 
       </select>
     </div>
     <div class="form-group">
-      <label for="sel1">District :</label>
-      <select class="form-control" id="sel1">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
+      <label for="district">District :</label>
+      <select class="form-control" id="district" disabled>
       </select>
     </div>
     <div class="form-group">
@@ -98,3 +116,5 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>
+</body>
+</html>
