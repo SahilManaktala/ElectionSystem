@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <meta charset="UTF-8">
-    <title>Registration</title>
-</head>
-<body bgcolor="white;">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <div class="container-fluid">
     <h1><center>Registration Form</center></h1>
 </div>
@@ -62,9 +56,9 @@
       <label for="sel1">State :</label>
       <select class="form-control" id="sel1">
 
-          {% for foo in states %}
+          {% for foo in sta %}
 
-          <option> {{ foo.state_name }} </option>
+                 <option> {{ foo.state_name }} </option>
           {% endfor %}
 
 
@@ -104,5 +98,3 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>
-</body>
-</html>
