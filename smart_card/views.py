@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from .models import *
+import string
 
 def index(request):
     return render(request, 'smart_card/index.html', context=None)
@@ -57,6 +58,20 @@ def get_gram_panchayats(request):
         result.append(info)
     return JsonResponse(result, safe = False)
 
+def next_string(current):
+    l = [str(i) for i in range(0, 10)]
+    l = l + list(string.ascii_uppercase)
+    s = list(current)
+    i = len(current) - 1
+    ch = l[(l.index(s[i]) + 1) % 36]
+    while i != -1:
+        s[i] = ch
+        if ch != '0':
+            break
+        i = i - 1
+        ch = l[(l.index(s[i]) + 1) % 36]
+    return ''.join(s)
+
 def do_register(request):
     person = Person()
     person.first_name = request.POST.get("fname", None)
@@ -74,5 +89,10 @@ def do_register(request):
     gram_panchayat_id = str(request.POST.get('gram_panchayat', None))
     person.gram_panchayat_id = country_id + state_id + district_id + tehsil_id + gram_panchayat_id
     person.address = request.POST.get('address', None)
-    person.id = ''
-    return HttpResponse(person.gram_panchayat_id + person.id)
+    q = Person.objects.raw('SELECT MAX(person_id), id FROM smart_card_person WHERE gram_panchayat_id="' + person.gram_panchayat_id + '"')
+    max_id = ''
+    for row in q:
+        max_id = row.person_id
+    person.person_id = next_string(max_id)
+    person.save()
+    return HttpResponse(person.gram_panchayat_id + person.person_id)
