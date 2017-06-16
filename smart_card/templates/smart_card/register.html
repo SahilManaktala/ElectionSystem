@@ -93,6 +93,14 @@
         }
 
     }
+    function AllowNumber()
+    {
+        if (!frm.cnumber.value.match(/^[0-9+-]+$/) && frm.cnumber.value != "") {
+            frm.cnumber.value = "";
+            frm.cnumber.focus();
+            alert("Please Enter only Numbers in Phone Number");
+        }
+    }
 
 
     </script>
@@ -111,7 +119,7 @@
   </div>
   <div class="form-group">
       <label for="lname">Last Name</label>
-        <input name="lname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter last name" required>
+        <input name="lname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter last name">
   </div>
     <legend>Gender</legend>
     <div class="form-check">
@@ -134,16 +142,16 @@
     </div>
 <br>
   <div class="form-group">
-    <label for="faname">Father's Name</label>
-        <input  name="faname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter Father's name" required>
+    <label for="faname">Father's Name / Guardian Name</label>
+        <input  name="faname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter Father's name">
   </div>
   <div class="form-group">
-    <label for="fname">Mother's Name</label>
-        <input  name="moname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter Mother's name" required>
+    <label for="fname">Mother's Name / Guardian Name</label>
+        <input  name="moname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter Mother's name" >
   </div>
   <div class="form-group">
     <label for="cnumber">Phone Number</label>
-        <input  name="cnumber" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Phone Number" required>
+        <input  name="cnumber" type="text" class="form-control" id="exampleInputEmail1" onkeyup="AllowNumber()" placeholder="Enter Phone Number" required>
   </div>
    <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
