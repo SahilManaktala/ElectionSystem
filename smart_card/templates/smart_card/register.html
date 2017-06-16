@@ -64,6 +64,37 @@
             xmlhttp.open("GET", url, true);
             xmlhttp.send();
         }
+
+    function alphabet()
+    {
+        if (!frm.fname.value.match(/^[a-zA-Z]+$/) && frm.fname.value !="")
+        {
+            frm.fname.value="";
+            frm.fname.focus();
+            alert("Please Enter only alphabets in text");
+        }
+        if (!frm.lname.value.match(/^[a-zA-Z]+$/) && frm.lname.value !="")
+        {
+            frm.lname.value="";
+            frm.lname.focus();
+            alert("Please Enter only alphabets in text");
+        }
+        if (!frm.faname.value.match(/^[a-zA-Z]+$/) && frm.faname.value !="")
+        {
+            frm.faname.value="";
+            frm.faname.focus();
+            alert("Please Enter only alphabets in text");
+        }
+        if (!frm.moname.value.match(/^[a-zA-Z]+$/) && frm.moname.value !="")
+        {
+            frm.moname.value="";
+            frm.moname.focus();
+            alert("Please Enter only alphabets in text");
+        }
+
+    }
+
+
     </script>
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -73,14 +104,14 @@
 </div>
 <hr>
 <div class="container" style="box-shadow: 10px 10px 5px grey;">
-<form action="do_register/" method="POST">{% csrf_token %}
+<form name="frm" action="do_register/" method="POST">{% csrf_token %}
   <div class="form-group">
     <label for="fname">First Name</label>
-        <input  name="fname" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter first name" required>
+        <input  name="fname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter first name" required>
   </div>
   <div class="form-group">
       <label for="lname">Last Name</label>
-        <input name="lname" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter last name" required>
+        <input name="lname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter last name" required>
   </div>
     <legend>Gender</legend>
     <div class="form-check">
@@ -104,11 +135,11 @@
 <br>
   <div class="form-group">
     <label for="faname">Father's Name</label>
-        <input  name="faname" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Father's name" required>
+        <input  name="faname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter Father's name" required>
   </div>
   <div class="form-group">
     <label for="fname">Mother's Name</label>
-        <input  name="moname" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Mother's name" required>
+        <input  name="moname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter Mother's name" required>
   </div>
   <div class="form-group">
     <label for="cnumber">Phone Number</label>
