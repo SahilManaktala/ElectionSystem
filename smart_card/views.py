@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from .models import *
 
 def index(request):
@@ -56,3 +56,23 @@ def get_gram_panchayats(request):
         info['gram_panchayat_name'] = row.gram_panchayat_name
         result.append(info)
     return JsonResponse(result, safe = False)
+
+def do_register(request):
+    person = Person()
+    person.first_name = request.POST.get("fname", None)
+    person.last_name = request.POST.get("lname", None)
+    person.gender = request.POST.get('gender', None)
+    person.fathers_name = request.POST.get('faname', None)
+    person.mothers_name = request.POST.get('moname', None)
+    person.phone_number = request.POST.get('cnumber', None)
+    person.email = request.POST.get('email')
+    person.pan = request.POST.get('Pan', None)
+    country_id = '1'
+    state_id = str(request.POST.get('state', None))
+    district_id = str(request.POST.get('district', None))
+    tehsil_id = str(request.POST.get('tehsil', None))
+    gram_panchayat_id = str(request.POST.get('gram_panchayat', None))
+    person.gram_panchayat_id = country_id + state_id + district_id + tehsil_id + gram_panchayat_id
+    person.address = request.POST.get('address', None)
+    person.person_id = ''
+    return HttpResponse(person.gram_panchayat_id + person.person_id)

@@ -73,7 +73,7 @@
 </div>
 <hr>
 <div class="container" style="box-shadow: 10px 10px 5px grey;">
-<form action="{% url 'register' %}" method="GET">
+<form action="do_register/" method="POST">{% csrf_token %}
   <div class="form-group">
     <label for="fname">First Name</label>
         <input  name="fname" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter first name" required>
@@ -85,14 +85,20 @@
     <legend>Gender</legend>
     <div class="form-check">
       <label class="form-check-label">
-        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="Male" checked>
+        <input type="radio" class="form-check-input" name="gender" id="optionsRadios1" value="Male" checked>
         Male
       </label>
     </div>
     <div class="form-check">
     <label class="form-check-label">
-        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="Female">
+        <input type="radio" class="form-check-input" name="gender" id="optionsRadios2" value="Female">
         Female
+      </label>
+    </div>
+    <div class="form-check">
+    <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="gender" id="optionsRadios2" value="Other">
+        Other
       </label>
     </div>
 <br>
@@ -110,7 +116,7 @@
   </div>
    <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+    <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
    </div>
    <div class="form-group">
     <label for="Pan">PAN Number</label>
@@ -134,18 +140,23 @@
     </div>
     <div class="form-group">
       <label for="district">District :</label>
-      <select class="form-control" id="district" onchange="getTehsils()" disabled>
+      <select class="form-control" name="district" id="district" onchange="getTehsils()" disabled>
       </select>
     </div>
     <div class="form-group">
       <label for="tehsil">Tehsil :</label>
-      <select class="form-control" id="tehsil" onchange="getGramPanchayats()" disabled>
+      <select class="form-control" name="tehsil" id="tehsil" onchange="getGramPanchayats()" disabled>
       </select>
     </div>
     <div class="form-group">
       <label for="gram_panchayat">Gram Panchayat / Ward :</label>
-      <select class="form-control" id="gram_panchayat" disabled>
+      <select class="form-control" name="gram_panchayat" id="gram_panchayat" disabled>
       </select>
+    </div>
+
+    <div class="form-group">
+    <label for="address">Address</label>
+        <textarea  name="address" class="form-control" value="" id="address"></textarea>
     </div>
 
 
