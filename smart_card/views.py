@@ -95,4 +95,8 @@ def do_register(request):
         max_id = row.person_id
     person.person_id = next_string(max_id)
     person.save()
-    return HttpResponse(person.gram_panchayat_id + person.person_id)
+    #return HttpResponse(person.gram_panchayat_id + person.person_id)
+    context = {
+        'ID': person.gram_panchayat_id + person.person_id
+    }
+    return render(request, 'smart_card/do_register.html', context)

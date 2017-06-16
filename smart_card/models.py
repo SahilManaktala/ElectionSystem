@@ -1,9 +1,9 @@
 from django.db import models
 
 class State(models.Model):
-    country_id = models.CharField(max_length = 1)
-    state_id = models.CharField(max_length = 1)
-    state_name = models.CharField(max_length = 100)
+    country_id = models.CharField(max_length=1)
+    state_id = models.CharField(max_length=1)
+    state_name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.country_id + ' ' + self.state_id + ' ' + self.state_name
