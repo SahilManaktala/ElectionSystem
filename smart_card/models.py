@@ -45,8 +45,9 @@ class Person(models.Model):
     gender = models.CharField(max_length=10)
     pan = models.CharField(max_length=11)
     phone_number = models.CharField(max_length = 10)
-    address = models.CharField(max_length = 1000)
-
+    housenum = models.CharField(max_length = 1000)
+    streetnum = models.CharField(max_length=100)
+    postalnum = models.CharField(max_length=100)
 
     def __str__(self):
         return self.gram_panchayat_id + ' ' + self.person_id + ' ' + self.first_name + ' ' + self.last_name

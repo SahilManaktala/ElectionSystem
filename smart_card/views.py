@@ -83,13 +83,15 @@ def do_register(request):
     person.phone_number = request.POST.get('cnumber', None)
     person.email = request.POST.get('email')
     person.pan = request.POST.get('Pan', None)
+    person.housenum = request.POST.get('hnum', None)
+    person.streetnum = request.POST.get('sname', None)
+    person.postalnum = request.POST.get('pnum', None)
     country_id = '1'
     state_id = str(request.POST.get('state', None))
     district_id = str(request.POST.get('district', None))
     tehsil_id = str(request.POST.get('tehsil', None))
     gram_panchayat_id = str(request.POST.get('gram_panchayat', None))
     person.gram_panchayat_id = country_id + state_id + district_id + tehsil_id + gram_panchayat_id
-    person.address = request.POST.get('address', None)
     q = Person.objects.raw('SELECT MAX(person_id), id FROM smart_card_person WHERE gram_panchayat_id="' + person.gram_panchayat_id + '"')
     max_id = ''
     for row in q:
