@@ -75,6 +75,7 @@ def next_string(current):
 def do_register(request):
     person = Person()
     person.first_name = request.POST.get("fname", None)
+    person.middle_name = request.POST.get("mname", None)
     person.last_name = request.POST.get("lname", None)
     person.gender = request.POST.get('gender', None)
     person.fathers_name = request.POST.get('faname', None)

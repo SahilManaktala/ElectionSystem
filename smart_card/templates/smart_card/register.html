@@ -73,6 +73,13 @@
             frm.fname.focus();
             alert("Please Enter only alphabets in text");
         }
+        if (!frm.mname.value.match(/^[a-zA-Z]+$/) && frm.mname.value !="")
+        {
+            frm.mname.value="";
+            frm.mname.focus();
+            alert("Please Enter only alphabets in text");
+        }
+
         if (!frm.lname.value.match(/^[a-zA-Z]+$/) && frm.lname.value !="")
         {
             frm.lname.value="";
@@ -111,13 +118,18 @@
     <h1><center>Registration Form</center></h1>
 </div>
 <hr>
-<div class="container" style="box-shadow: 10px 10px 5px grey;">
+<div class="container">
 <form name="frm" action="do_register/" method="POST">{% csrf_token %}
   <div class="form-group">
     <label for="fname">First Name</label>
         <input  name="fname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter first name" required>
   </div>
   <div class="form-group">
+      <label for="mname">Middle Name</label>
+        <input name="mname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter Middle name">
+  </div>
+
+    <div class="form-group">
       <label for="lname">Last Name</label>
         <input name="lname" type="text" class="form-control" id="exampleInputEmail1" onkeyup="alphabet()" placeholder="Enter last name">
   </div>
