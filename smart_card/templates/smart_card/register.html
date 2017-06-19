@@ -86,13 +86,13 @@
             frm.lname.focus();
             alert("Please enter only alphabets in text");
         }
-        if (!frm.faname.value.match(/^[a-zA-Z]+$/) && frm.faname.value !="")
+        if (!frm.faname.value.match(/^[a-zA-Z ]+$/) && frm.faname.value !="")
         {
             frm.faname.value="";
             frm.faname.focus();
             alert("Please enter only alphabets in text");
         }
-        if (!frm.moname.value.match(/^[a-zA-Z]+$/) && frm.moname.value !="")
+        if (!frm.moname.value.match(/^[a-zA-Z ]+$/) && frm.moname.value !="")
         {
             frm.moname.value="";
             frm.moname.focus();
@@ -211,15 +211,15 @@
     </div>
     <div class="form-group">
     <label for="exampleInputEmail1">House Number</label>
-    <input type="email" name="hnum" class="form-control" id="exampleInputEmail1" required>
+    <input type="text" name="hnum" class="form-control" id="exampleInputEmail1" required>
    </div>
    <div class="form-group">
     <label for="address">Street Number / Village Name</label>
-        <input type="email" name="sname" class="form-control" id="exampleInputEmail1">
+        <input type="text" name="sname" class="form-control" id="exampleInputEmail1">
    </div>
    <div class="form-group">
    <label for="address">Postal Address</label>
-        <input type="email" name="pnum" class="form-control" id="exampleInputEmail1" onkeyup="AllowNumber()" required>
+        <input type="text" name="pnum" class="form-control" id="exampleInputEmail1" onkeyup="AllowNumber()" required>
    </div>
 
 
