@@ -1,5 +1,12 @@
 from django.db import models
 
+class Country(models.Model):
+    country_id = models.CharField(max_length=2)
+    country_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.country_id + ' ' + self.country_name
+
 class State(models.Model):
     country_id = models.CharField(max_length=1)
     state_id = models.CharField(max_length=1)
