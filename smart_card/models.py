@@ -8,15 +8,15 @@ class Country(models.Model):
         return self.country_id + ' ' + self.country_name
 
 class State(models.Model):
-    country_id = models.CharField(max_length=1)
-    state_id = models.CharField(max_length=1)
+    country_id = models.CharField(max_length=2)
+    state_id = models.CharField(max_length=2)
     state_name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.country_id + ' ' + self.state_id + ' ' + self.state_name
 
 class District(models.Model):
-    state_id = models.CharField(max_length = 1)
+    state_id = models.CharField(max_length = 2)
     district_id = models.CharField(max_length = 2)
     district_name = models.CharField(max_length = 150)
 
