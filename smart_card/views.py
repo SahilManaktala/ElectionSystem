@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from .models import *
 import string
+import pyqrcode
 
 def index(request):
     return render(request, 'smart_card/index.html', context=None)
@@ -15,8 +16,6 @@ def register(request):
 
 def details(request):
     return render(request, 'smart_card/details.html', context=None)
-
-
 
 def get_districts(request):
     state_id = request.GET.get('state_id', None)
@@ -98,8 +97,13 @@ def do_register(request):
         max_id = row.person_id
     person.person_id = next_string(max_id)
     person.save()
-    #return HttpResponse(person.gram_panchayat_id + person.person_id)
+    big_code = pyqrcode.create(str(person.gram_panchayat_id) + str(person.person_id), error='L', mode='binary')
+    big_code.png('smart_card/static/smart_card/images/qrcode.png', scale=2, module_color=[0, 0, 0, 128], background=[0xff, 0xff, 0xff])
     context = {
-        'ID': person.gram_panchayat_id + person.person_id
+        'ID': person.gram_panchayat_id + person.person_id,
+        'name': person.first_name + ' ' + person.middle_name + ' ' + person.last_name,
+        'fathers_name': person.fathers_name,
+        'gender': person.gender,
+        'postalnum': person.postalnum
     }
-    return render(request, 'smart_card/do_register.html', context)
+    return render(request, 'smart_card/ID.html', context)
