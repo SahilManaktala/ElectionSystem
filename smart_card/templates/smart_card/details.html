@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <title>Log In</title>
       <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
     .form-signin
 {
-    max-width: 330px;
+    max-width: 350px;
     padding: 15px;
     margin: 0 auto;
 }
@@ -36,7 +37,8 @@
 }
 .form-signin input[type="text"]
 {
-    margin-bottom: -1px;
+    height: 2em;
+    margin-bottom: 5%;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
@@ -87,14 +89,19 @@
 <body bgcolor="white">
 <div class="container">
     <div class="row">
-        <div class="col-sm-6 col-md-4 col-md-offset-4">
+        <div class="col-sm-6 col-md-4 col-md-offset-4" >
             <h1 class="text-center login-title">Sign in to check your details</h1>
             <div class="account-wall">
                 <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                     alt="">
-                <form class="form-signin">
-                <input type="text" class="form-control" placeholder="Smart-ID Number" required autofocus>
-                <input type="password" class="form-control" placeholder="Password" required>
+                <form class="form-signin" method="post" action="view_details/">{% csrf_token %}
+                <input type="text" class="inputs" required autofocus name="country" size="2" maxlength="2" width="3%">
+                    -
+                 <input type="text" class="inputs" required autofocus name="state" size="2" maxlength="2" width="3%">   -
+                    <input type="text" class="inputs" required autofocus name="district" size="2" maxlength="2" width="3%"> -
+                    <input type="text" class="inputs" required autofocus name="tehsil" size="2" maxlength="2" width="3%"> -
+                    <input type="text" class="inputs" required autofocus name="personal_id" size="5" maxlength="5" width="5%">
+                <input type="password" class="form-control" placeholder="Password" required name="passwd">
                 <button class="btn btn-lg btn-primary btn-block" type="submit">
                     Log In</button>
                 </form>
@@ -104,4 +111,18 @@
     </div>
 </div>
 </body>
+<script type='text/javascript'>//<![CDATA[
+$(window).load(function(){
+$(".inputs").keyup(function () {
+    if (this.value.length == this.maxLength) {
+      var $next = $(this).next('.inputs');
+      if ($next.length)
+          $(this).next('.inputs').focus();
+      else
+          $(this).blur();
+    }
+});
+});//]]>
+
+</script>
 </html>

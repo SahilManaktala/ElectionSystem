@@ -107,3 +107,20 @@ def do_register(request):
         'postalnum': person.postalnum
     }
     return render(request, 'smart_card/ID.html', context)
+
+def view_details(request):
+    person = Person()
+    person.country = str(request.POST.get("country", None))
+    person.state = str(request.POST.get("state", None))
+    person.district = str(request.POST.get("district", None))
+    person.tehsil = str(request.POST.get("tehsil", None))
+
+    person.personal_id = str(request.POST.get("personal_id", None))
+    context = {
+        'per' : Person.objects.all(),
+        'id': person.country + person.state + person.district + person.tehsil + person.personal_id,
+        'tehsil_id': person.country + person.state + person.district + person.tehsil,
+        'only_personal': person.personal_id
+    }
+
+    return render(request, 'smart_card/view_details.html', context)

@@ -29,7 +29,14 @@
 		</style>
 	</head>
 	<body>
-		<table height=248 width=418>
+
+    <div style="box-shadow: 1.5px 1.5px 1.5px 1.5px #555555; height: 500px">
+ <h1> Registration Successful</h1> <br>
+<hr>
+<p> Your Generated ID is : <span style="color:red; font-size: 1.7em;"> {{ ID }}</span></p>
+
+        <br><br>
+        <table height=248 width=418>
 			<tr>
                 <td height=72 width=60><img id="pic1" src="{% static 'smart_card/images/Gov.png' %}" ></td>
 				<td height=72 width=200><img id="pic2" src="{% static 'smart_card/images/tricolor.jpg' %}" ></td>
@@ -51,5 +58,7 @@
                 <td colspan="3" align="center"><b>{{ID}}</b></td>
 			</tr>
 		</table>
+    </div>
+
 	</body>
 </html>
