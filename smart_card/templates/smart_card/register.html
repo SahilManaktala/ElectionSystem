@@ -17,7 +17,7 @@
                     document.getElementById('district').innerHTML = html;
                 }
             };
-            xmlhttp.open("GET", "/smart_card/get_districts/?state_id=" + value, true);
+            xmlhttp.open("GET", "/smart_card/get_districts/?state_id=01" + value, true);
             xmlhttp.send();
         }
 
@@ -36,7 +36,7 @@
                 }
             };
             var url = "/smart_card/get_tehsils/";
-            url += "?country_id=1&";
+            url += "?country_id=01&";
             url += "state_id=" + document.getElementById("state").value + "&";
             url += "district_id=" + document.getElementById("district").value;
             xmlhttp.open("GET", url, true);
@@ -57,7 +57,7 @@
                 }
             };
             var url = "/smart_card/get_gram_panchayats/";
-            url += "?country_id=1&";
+            url += "?country_id=01&";
             url += "state_id=" + document.getElementById("state").value + "&";
             url += "district_id=" + document.getElementById("district").value + "&";
             url += "tehsil_id=" + document.getElementById("tehsil").value;

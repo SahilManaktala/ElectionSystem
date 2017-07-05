@@ -85,7 +85,7 @@ def do_register(request):
     person.housenum = request.POST.get('hnum', None)
     person.streetnum = request.POST.get('sname', None)
     person.postalnum = request.POST.get('pnum', None)
-    country_id = '1'
+    country_id = '01'
     state_id = str(request.POST.get('state', None))
     district_id = str(request.POST.get('district', None))
     tehsil_id = str(request.POST.get('tehsil', None))
