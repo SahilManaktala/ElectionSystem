@@ -114,13 +114,19 @@ def view_details(request):
     person.state = str(request.POST.get("state", None))
     person.district = str(request.POST.get("district", None))
     person.tehsil = str(request.POST.get("tehsil", None))
-
+    person.gram = str(request.POST.get("gram", None))
     person.personal_id = str(request.POST.get("personal_id", None))
+
+
+    person.gram_id = person.country + person.state + person.district + person.tehsil + person.gram + person.personal_id
+    q = Person.objects.raw('SELECT first_name FROM smart_card_person WHERE gram_panchayat_id ="' + person.gram_id + '" AND person_id="' + person.personal_id + '"')
+
     context = {
         'per' : Person.objects.all(),
         'id': person.country + person.state + person.district + person.tehsil + person.personal_id,
         'tehsil_id': person.country + person.state + person.district + person.tehsil,
-        'only_personal': person.personal_id
+        'only_personal': person.personal_id,
+        'query' : q
     }
 
     return render(request, 'smart_card/view_details.html', context)
