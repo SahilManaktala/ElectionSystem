@@ -6,9 +6,43 @@
     <title>View Details</title>
 </head>
 <body>
-Smart Card Id : {{ query }}<br>
 
+<ul>
+{% for x in query %}
+    <li> First Name: {{ x.first_name }}</li>
+    <li> Last Name: {{ x.last_name }}</li>
+    <li> Father's Name: {{ x.fathers_name }}</li>
+    <li> Mother's Name: {{ x.mothers_name }}</li>
+    <li> Gender: {{ x.gender }}</li>
+    <li> Pan Number: {{ x.pan }}</li>
+    <li> Email: {{ x.email }}</li>
+    <li> Phone Number: {{ x.phone_number }}</li>
+    <li> Address: {{ x.housenum}}, {{x.streetnum }}, {{ x.postalnum }}</li>
 
+{% endfor %}
 
+{% for con in country %}
+    <li> Country: {{ con.country_name }}</li>
+{% endfor %}
+
+{% for state in state %}
+    <li>State: {{ state.state_name }}</li>
+{% endfor %}
+
+{% for dis in district %}
+    <li>District: {{ dis.district_name }}</li>
+
+{% endfor %}
+
+{% for teh in tehsil %}
+    <li>Tehsil: {{ teh.tehsil_name }}</li>
+
+{% endfor %}
+
+{% for g in gram %}
+    <li>Gram Panchayat: {{ g.gram_panchayat_name }}</li>
+
+{% endfor %}
+</ul>
 </body>
 </html>

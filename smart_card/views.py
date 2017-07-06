@@ -96,6 +96,7 @@ def do_register(request):
     for row in q:
         max_id = row.person_id
     person.person_id = next_string(max_id)
+    person.net_person_id = person.gram_panchayat_id + person.person_id
     person.save()
     big_code = pyqrcode.create(str(person.gram_panchayat_id) + str(person.person_id), error='L', mode='binary')
     big_code.png('smart_card/static/smart_card/images/qrcode.png', scale=2, module_color=[0, 0, 0, 128], background=[0xff, 0xff, 0xff])
@@ -110,6 +111,11 @@ def do_register(request):
 
 def view_details(request):
     person = Person()
+    country = Country()
+    state = State()
+    district = District()
+    tehsil = Tehsil()
+    grampanch = GramPanchayat()
     person.country = str(request.POST.get("country", None))
     person.state = str(request.POST.get("state", None))
     person.district = str(request.POST.get("district", None))
@@ -119,14 +125,24 @@ def view_details(request):
 
 
     person.gram_id = person.country + person.state + person.district + person.tehsil + person.gram + person.personal_id
-    q = Person.objects.raw('SELECT first_name FROM smart_card_person WHERE gram_panchayat_id ="' + person.gram_id + '" AND person_id="' + person.personal_id + '"')
-
+    #q = Person.objects.raw('SELECT first_name FROM smart_card_person WHERE gram_panchayat_id ="' + person.gram_id + '" AND person_id="' + person.personal_id + '"')
+    q = Person.objects.filter(net_person_id= person.gram_id).values('first_name', 'last_name', 'fathers_name', 'mothers_name', 'gender', 'email', 'pan', 'phone_number', 'housenum', 'streetnum', 'postalnum')
+    con_q = Country.objects.filter(country_id=person.country).values('country_name')
+    sta_q = State.objects.filter(state_id= person.state).values('state_name')
+    dist_q = District.objects.filter(district_id=person.district, state_id=person.country+person.state).values('district_name')
+    teh_q = Tehsil.objects.filter(tehsil_id=person.tehsil, district_id=person.country+person.state+person.district).values('tehsil_name')
+    gram_q = GramPanchayat.objects.filter(gram_panchayat_id=person.gram, tehsil_id=person.country+person.state+person.district+person.tehsil).values('gram_panchayat_name')
     context = {
         'per' : Person.objects.all(),
         'id': person.country + person.state + person.district + person.tehsil + person.personal_id,
         'tehsil_id': person.country + person.state + person.district + person.tehsil,
         'only_personal': person.personal_id,
-        'query' : q
+        'query' : q,
+        'country' : con_q,
+        'state' : sta_q,
+        'district': dist_q,
+        'tehsil' : teh_q,
+        'gram' : gram_q
     }
 
     return render(request, 'smart_card/view_details.html', context)
