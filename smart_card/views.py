@@ -79,6 +79,7 @@ def do_register(request):
     person.gender = request.POST.get('gender', None)
     person.fathers_name = request.POST.get('faname', None)
     person.mothers_name = request.POST.get('moname', None)
+    person.dob = request.POST.get('dob', None)
     person.phone_number = request.POST.get('cnumber', None)
     person.email = request.POST.get('email')
     person.pan = request.POST.get('Pan', None)
@@ -126,7 +127,7 @@ def view_details(request):
 
     person.net_id = person.country + person.state + person.district + person.tehsil + person.gram + person.personal_id
     #q = Person.objects.raw('SELECT first_name FROM smart_card_person WHERE gram_panchayat_id ="' + person.gram_id + '" AND person_id="' + person.personal_id + '"')
-    q = Person.objects.filter(net_person_id= person.net_id).values('first_name', 'last_name', 'fathers_name', 'mothers_name', 'gender', 'email', 'pan', 'phone_number', 'housenum', 'streetnum', 'postalnum')
+    q = Person.objects.filter(net_person_id= person.net_id).values('first_name', 'last_name', 'fathers_name', 'mothers_name', 'gender', 'email', 'pan', 'phone_number', 'housenum', 'streetnum', 'postalnum', 'dob')
     con_q = Country.objects.filter(country_id=person.country).values('country_name')
     sta_q = State.objects.filter(state_id= person.state).values('state_name')
     dist_q = District.objects.filter(district_id=person.district, state_id=person.country+person.state).values('district_name')

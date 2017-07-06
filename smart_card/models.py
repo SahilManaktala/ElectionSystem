@@ -49,6 +49,7 @@ class Person(models.Model):
     last_name = models.CharField(max_length = 20)
     fathers_name = models.CharField(max_length = 50)
     mothers_name = models.CharField(max_length=50)
+    dob = models.CharField(max_length=15)
     email= models.CharField(max_length=100)
     gender = models.CharField(max_length=10)
     pan = models.CharField(max_length=11)
