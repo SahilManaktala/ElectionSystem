@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from .models import *
-import string
+import random, string
 import pyqrcode
 
 def index(request):
@@ -98,6 +98,7 @@ def do_register(request):
         max_id = row.person_id
     person.person_id = next_string(max_id)
     person.net_person_id = person.gram_panchayat_id + person.person_id
+    person.password = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
     person.save()
     big_code = pyqrcode.create(str(person.gram_panchayat_id) + str(person.person_id), error='L', mode='binary')
     big_code.png('smart_card/static/smart_card/images/qrcode.png', scale=2, module_color=[0, 0, 0, 128], background=[0xff, 0xff, 0xff])
@@ -106,7 +107,8 @@ def do_register(request):
         'name': person.first_name + ' ' + person.middle_name + ' ' + person.last_name,
         'fathers_name': person.fathers_name,
         'gender': person.gender,
-        'postalnum': person.postalnum
+        'postalnum': person.postalnum,
+        'password': person.password
     }
     return render(request, 'smart_card/ID.html', context)
 
