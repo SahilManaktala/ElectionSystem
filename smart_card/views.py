@@ -126,10 +126,15 @@ def view_details(request):
     person.gram = str(request.POST.get("gram", None))
     person.personal_id = str(request.POST.get("personal_id", None))
 
-
+    person.password = str(request.POST.get("passwd", None))
     person.net_id = person.country + person.state + person.district + person.tehsil + person.gram + person.personal_id
     #q = Person.objects.raw('SELECT first_name FROM smart_card_person WHERE gram_panchayat_id ="' + person.gram_id + '" AND person_id="' + person.personal_id + '"')
-    q = Person.objects.filter(net_person_id= person.net_id).values('first_name', 'last_name', 'fathers_name', 'mothers_name', 'gender', 'email', 'pan', 'phone_number', 'housenum', 'streetnum', 'postalnum', 'dob')
+    q = Person.objects.filter(net_person_id= person.net_id).values('first_name', 'last_name', 'password', 'fathers_name', 'mothers_name', 'gender', 'email', 'pan', 'phone_number', 'housenum', 'streetnum', 'postalnum', 'dob')
+    per = Person()
+    for p in q:
+        per = p
+    if per['password'] != person.password:
+        return HttpResponse("Wrong password loser!")
     con_q = Country.objects.filter(country_id=person.country).values('country_name')
     sta_q = State.objects.filter(state_id= person.state).values('state_name')
     dist_q = District.objects.filter(district_id=person.district, state_id=person.country+person.state).values('district_name')
@@ -147,5 +152,4 @@ def view_details(request):
         'tehsil' : teh_q,
         'gram' : gram_q
     }
-
     return render(request, 'smart_card/view_details.html', context)
