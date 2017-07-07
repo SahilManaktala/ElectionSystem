@@ -108,7 +108,8 @@ def do_register(request):
         'fathers_name': person.fathers_name,
         'gender': person.gender,
         'postalnum': person.postalnum,
-        'password': person.password
+        'password': person.password,
+        'dob': person.dob
     }
     return render(request, 'smart_card/ID.html', context)
 

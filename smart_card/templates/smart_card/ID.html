@@ -30,7 +30,8 @@
 	</head>
 	<body>
 
-    <div style="box-shadow: 1.5px 1.5px 1.5px 1.5px #555555; height: 500px">
+    <div style="box-shadow: 1.5px 1.5px 1.5px 1.5px #555555; height: 500px" id="main">
+        <center>
  <h1> Registration Successful</h1> <br>
 <hr>
 <p> Your Generated ID is : <span style="color:red; font-size: 1.7em;"> {{ ID }}</span></p>
@@ -51,6 +52,9 @@
 			<tr>
                 <td colspan="2">Gender: {{gender}}</td>
 			</tr>
+            <tr>
+                <td colspan="2">Date of Birth: {{dob}}</td>
+			</tr>
 			<tr>
 				<td colspan="2"></td>
 			</tr>
@@ -58,8 +62,23 @@
                 <td colspan="3" align="center"><b>{{ID}}</b></td>
 			</tr>
 		</table>
+
+        <br>
+         Password : <span style="font-size: 1.5em; color: red"> {{password}}</span>
+             </center>
     </div>
-    Password : {{password}}
+    <br><br><br>
+<center>
+
+    <input type="button" onclick="myfunction()" value = "Click Here to print the page">
+</center>
 
 	</body>
+
+<script>
+
+    function myfunction() {
+        window.print();
+    }
+</script>
 </html>
