@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'ElectionSystem.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.sqlite3',     # Can use sqlite3, oracle, mysql etc.
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),   # Or path to database file if using sqlite3.
+        #'USER': 'django_login',                      # Not used with sqlite3.
+        #'PASSWORD': 'password',                  # Not used with sqlite3.
+        #'HOST': 'XX.XXX.X.XX',                      # Set to empty string for localhost. Not used with sqlite3.
+        #'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
 
