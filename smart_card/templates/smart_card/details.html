@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <title>Log In</title>
@@ -37,27 +38,35 @@
 }
 .form-signin input[type="text"]
 {
+    margin:0 auto;
     height: 2em;
     display: inline;
     margin-bottom: 5%;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    max-width: inherit;
+
 }
 .form-signin input[type="password"]
 {
+    margin:0 auto;
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+
+    min-width: inherit;
+
 }
 .account-wall
 {
-    margin-top: 20px;
+    margin:0 auto;
+
     padding: 40px 0px 20px 0px;
     background-color: #f7f7f7;
     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    width: 29.2em;
+    width: auto;
 }
 .login-title
 {
@@ -97,6 +106,8 @@
                 <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                     alt="">
                 <form class="form-signin" method="post" action="view_details/">{% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-12">
                 <input type="text" class="inputs" required autofocus name="country" size="2" maxlength="2" width="3%">
                     -
                  <input type="text" class="inputs" required autofocus name="state" size="2" maxlength="2" width="3%">   -
@@ -104,6 +115,8 @@
                     <input type="text" class="inputs" required autofocus name="tehsil" size="2" maxlength="2" width="3%"> -
                     <input type="text" class="inputs" required autofocus name="gram" size="2" maxlength="2" width="3%"> -
                     <input type="text" class="inputs" required autofocus name="personal_id" size="5" maxlength="5" width="5%">
+                        </div>
+                    </div>
                 <input type="password" class="form-control" name="passwd">
                 <button class="btn btn-lg btn-primary btn-block" type="submit">
                     Log In</button>
