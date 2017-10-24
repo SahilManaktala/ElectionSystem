@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),   # Or path to database file if using sqlite3.
         #'USER': 'django_login',                      # Not used with sqlite3.
         #'PASSWORD': 'password',                  # Not used with sqlite3.
-        #'HOST': 'XX.XXX.X.XX',                      # Set to empty string for localhost. Not used with sqlite3.
+        #'HOST': '192.168.0.101',                      # Set to empty string for localhost. Not used with sqlite3.
         #'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
